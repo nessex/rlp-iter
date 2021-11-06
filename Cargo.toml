@@ -1,0 +1,8 @@
+[package]
+name = "rlp-iter"
+description = "An iterator following a space-filling pattern over a given range"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bit-vec = "0.6.3"
