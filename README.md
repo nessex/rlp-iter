@@ -1,5 +1,7 @@
 # rlp-iter
 
+![demo.gif](https://raw.githubusercontent.com/Nessex/rlp-iter/master/demo.gif)
+
 rlp-iter (Resolving Lattice Point Iterator) is an iterator that returns a space-filling permutation of integers in a given range. Specifically, it emits integers roughly in order of the most distant integer from any other previously emitted integer.
 
  - Iterates over all values in a range (e.g. `0..=100`)
