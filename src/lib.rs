@@ -246,7 +246,7 @@ mod tests {
 
     #[test]
     fn test_readme_example() {
-        let mut out: Vec<usize> = (0..=100).rlp_iter().collect();
+        let out: Vec<usize> = (0..=100).rlp_iter().collect();
 
         assert_eq!(out[0..9], [0, 100, 50, 25, 75, 13, 38, 63, 88]);
     }
