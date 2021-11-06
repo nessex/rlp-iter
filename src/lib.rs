@@ -44,8 +44,8 @@
 //! Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.
 //!
 
-use std::ops::{Range, RangeInclusive};
 use bit_vec::BitVec;
+use std::ops::{Range, RangeInclusive};
 
 enum State {
     Start,
@@ -81,7 +81,7 @@ impl Iterator for RlpIter {
                 self.state = State::End;
                 self.tested.set(0, true);
                 Some(0)
-            },
+            }
             State::End => {
                 if self.range == 0 {
                     self.state = State::Finished;
@@ -91,14 +91,15 @@ impl Iterator for RlpIter {
                     self.tested.set(self.range, true);
                     Some(self.range)
                 }
-            },
+            }
             State::Lattice => {
                 let mut out = None;
 
                 while self.pow <= self.final_pow {
                     // Calculate next value
                     let denominator = (1_u64 << self.pow) as usize;
-                    let val = (self.range as f64 * (self.numerator as f64 / denominator as f64)).round() as usize;
+                    let val = (self.range as f64 * (self.numerator as f64 / denominator as f64))
+                        .round() as usize;
 
                     if !self.tested.get(val).unwrap() {
                         out = Some(val);
@@ -141,10 +142,8 @@ impl Iterator for RlpIter {
 
                     out
                 }
-            },
-            State::Finished => {
-                None
             }
+            State::Finished => None,
         };
 
         unshifted.map(|v| v + self.shift)
@@ -210,13 +209,19 @@ mod tests {
     #[test]
     fn extreme_offset_inclusive_works() {
         let out: Vec<usize> = (1_000..=1_008).rlp_iter().collect();
-        assert_eq!(out[..],  [1_000, 1_008, 1_004, 1_002, 1_006, 1_001, 1_003, 1_005, 1_007]);
+        assert_eq!(
+            out[..],
+            [1_000, 1_008, 1_004, 1_002, 1_006, 1_001, 1_003, 1_005, 1_007]
+        );
     }
 
     #[test]
     fn extreme_offset_exclusive_works() {
         let out: Vec<usize> = (1_000..1_009).rlp_iter().collect();
-        assert_eq!(out[..],  [1_000, 1_008, 1_004, 1_002, 1_006, 1_001, 1_003, 1_005, 1_007]);
+        assert_eq!(
+            out[..],
+            [1_000, 1_008, 1_004, 1_002, 1_006, 1_001, 1_003, 1_005, 1_007]
+        );
     }
 
     #[test]
