@@ -1,8 +1,15 @@
 [package]
-name = "rlp-iter"
+authors = ["Nathan Essex <nathan@essex.id.au>"]
+categories = ["algorithms"]
 description = "An iterator following a space-filling pattern over a given range"
-version = "0.1.0"
-edition = "2021"
+documentation = "https://docs.rs/rlp-iter/"
+edition = "2018"
+homepage = "https://github.com/Nessex/rlp-iter"
+keywords = ["iterator","space-filling","permutation"]
+license = "Apache-2.0 OR MIT"
+name = "rlp-iter"
+repository = "https://github.com/Nessex/rlp-iter"
+version = "0.2.0"
 
 [dependencies]
 bit-vec = "0.6.3"
